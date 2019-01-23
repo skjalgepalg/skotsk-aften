@@ -22,10 +22,7 @@ import Map from './Map';
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 
-const images = {
-  formidagon: require('../assets/formidable-logo.svg'),
-  goodWork: require('../assets/good-work.gif')
-};
+const images = {};
 
 // Require CSS
 require('normalize.css');

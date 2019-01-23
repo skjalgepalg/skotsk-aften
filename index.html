@@ -2,55 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Skotsk aften 1.0</title>
-
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width initial-scale=1 user-scalable=no"
+    />
+    <title>Skotsk aften</title>
     <link
       href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles/app.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="map"></div>
-    <div class="reveal">
-      <div class="slides">
-        <section><h1>Skotsk aften</h1></section>
-        <section>
-          <h1>Etymologi</h1>
-          <p>
-            Av gaelisk "Uisge beatha" (<code>usquebaugh</code>) <br />
-            Livets vann
-          </p>
-        </section>
-        <section>
-          <h1>Kategorier</h1>
-          <p class="fragment">Single Malt Scotch Whisky</p>
-          <p class="fragment">Single Grain Scotch Whisky</p>
-          <p class="fragment">Blended Scotch Whisky</p>
-          <p class="fragment">Blended Malt Scotch Whisky</p>
-          <p class="fragment">Blended Grain Scotch Whisky</p>
-        </section>
-        <section>
-          <section><h1>Fremstilling</h1></section>
-          <section><h1>Bilde/gif av malting</h1></section>
-          <section><h1>Bilde av mesking</h1></section>
-          <section><h1>Bilde av fermentering</h1></section>
-          <section><h1>Bilde av destillering</h1></section>
-          <section><h1>Bilde av lagring</h1></section>
-        </section>
-        <section>
-          <h1>Smake</h1>
-          <p class="fragment">Se</p>
-          <p class="fragment">Lukt</p>
-          <p class="fragment">Smak</p>
-          <p class="fragment">Vann <span class="fragment">(kanskje?)</span></p>
-        </section>
-        <section></section>
-      </div>
-    </div>
-    <script src="./src/app.js"></script>
+    <div id="root"></div>
+    <script src="./dist/bundle.js"></script>
   </body>
 </html>
