@@ -8,7 +8,7 @@ Reveal.initialize({
   history: true,
   center: true,
   // default/cube/page/concave/zoom/linear/fade/none
-  transition: 'linear'
+  transition: 'fade'
 });
 
-map.initialize();
+map.initialize(Reveal);

@@ -4,6 +4,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #080808;
 }
 #map {
   position: absolute;
@@ -24,4 +25,8 @@ body {
 .reveal h6 {
   color: #a5c9f3;
   text-transform: uppercase;
+}
+
+#map canvas {
+  opacity: 0.2;
 }
