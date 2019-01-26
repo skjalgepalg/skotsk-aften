@@ -1,0 +1,40 @@
+.marker {
+  /*
+  background-image: url('mapbox-icon.png');
+  background-size: cover;
+  */
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  animation: fadeIn 1s normal forwards ease-in-out;
+}
+
+.marker.highlight {
+  background-color: #ca317d;
+  z-index: 2;
+}
+
+.nick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+}
+
+@keyframes fadeIn {
+  from: {
+    opacity: 0;
+  }
+  to: {
+    opacity: 1;
+  }
+}

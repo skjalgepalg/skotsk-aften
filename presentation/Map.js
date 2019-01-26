@@ -3,9 +3,13 @@ import React from 'react';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 export const defaultCenter = { longitude: -4.9, latitude: 56.808 };
-export const defaultZoom = 6.5;
+export const defaultZoom = 10;
+
+import distilleries from '../assets/distilleries.json';
 
 export default class Map extends React.Component {
+  markers = [];
+
   constructor(props) {
     super(props);
     this.container = React.createRef();
@@ -21,19 +25,40 @@ export default class Map extends React.Component {
       center: [defaultCenter.longitude, defaultCenter.latitude],
       zoom: defaultZoom
     });
-
-    console.log(this.map);
   }
 
   panTo({ latitude, longitude, zoom }) {
     this.map.flyTo({
       center: [longitude, latitude],
-      zoom: zoom || defaultZoom,
+      zoom: zoom || 6.5,
       // speed: 0.03,
       // curve: 0.1,
       maxDuration: 2500
     });
   }
+
+  clearMarkers = () => {
+    this.markers.forEach(marker => marker.remove());
+    this.markers = [];
+  };
+
+  addMarkers = (filterFn = () => true, highlight = () => false) => {
+    distilleries.features.filter(filterFn).forEach(marker => {
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.classList.add('marker');
+      if (highlight(marker)) {
+        el.classList.add('highlight');
+      }
+
+      // make a marker for each feature and add to the map
+      this.markers.push(
+        new mapboxgl.Marker(el)
+          .setLngLat(marker.geometry.coordinates)
+          .addTo(this.map)
+      );
+    });
+  };
 
   render() {
     return (
