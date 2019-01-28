@@ -154,7 +154,7 @@ export default class Presentation extends React.Component {
               loop
               className="nick"
               ref={this.video}
-              src="http://localhost:31338/Nick_lagavulin.mp4"
+              src={require('../assets/Nick_lagavulin.mp4')}
             />
           </Slide>
 

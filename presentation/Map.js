@@ -18,7 +18,7 @@ export default class Map extends React.Component {
 
   componentDidMount() {
     mapboxgl.accessToken =
-      'pk.eyJ1IjoiaGVsZ2VzaWxzZXQiLCJhIjoiY2psbzZ4NTEwMXFyZzN3bzV2Z212eHNmeiJ9.I5Eu88_PdJPXnF0ySxRlcw';
+      'pk.eyJ1IjoiaGVsZ2VzaWxzZXQiLCJhIjoiY2pyZzUxMHkxMTFzajQ1cmt1Z3IxYTNzbyJ9.JU4ovmAzzWtp54XVigKehg';
     this.map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/dark-v9', //hosted style id
