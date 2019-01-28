@@ -267,7 +267,7 @@ export default class Presentation extends React.Component {
               region: 'Campbeltown',
               distillery: 'Glengyle',
               abv: 46,
-              casks: 'Campbeltown',
+              casks: 'Bourbon',
               panTo: {
                 latitude: 55.57,
                 longitude: -5.56,
@@ -278,7 +278,7 @@ export default class Presentation extends React.Component {
               name: 'Bruichladdich Islay Barley 2010',
               region: 'Islay',
               distillery: 'Bruichladdich',
-              abv: 43,
+              abv: 50,
               casks: 'Bourbon',
               panTo: {
                 latitude: 55.76,
