@@ -1,11 +1,10 @@
-import React from 'react';
-
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
-export const defaultCenter = { longitude: -4.9, latitude: 56.808 };
-export const defaultZoom = 10;
-
+import React from 'react';
 import distilleries from '../assets/distilleries.json';
+
+export const defaultCenter = { latitude: 34.27357961572655, longitude: 24.76671443619682 };
+export const defaultZoom = 1.6285391864706138;
 
 export default class Map extends React.Component {
   markers = [];
@@ -21,16 +20,17 @@ export default class Map extends React.Component {
       'pk.eyJ1IjoiaGVsZ2VzaWxzZXQiLCJhIjoiY2pyZzUxMHkxMTFzajQ1cmt1Z3IxYTNzbyJ9.JU4ovmAzzWtp54XVigKehg';
     this.map = new mapboxgl.Map({
       container: 'map', // container id
-      style: 'mapbox://styles/mapbox/dark-v9', //hosted style id
+      style: 'mapbox://styles/mapbox/dark-v9', // hosted style id
       center: [defaultCenter.longitude, defaultCenter.latitude],
       zoom: defaultZoom
     });
+    window.map = this.map;
   }
 
   panTo({ latitude, longitude, zoom }) {
     this.map.flyTo({
       center: [longitude, latitude],
-      zoom: zoom || 6.5,
+      zoom: zoom || defaultZoom,
       // speed: 0.03,
       // curve: 0.1,
       maxDuration: 2500
@@ -64,7 +64,7 @@ export default class Map extends React.Component {
     return (
       <div
         ref={this.container}
-        id="map"
+        id='map'
         style={{ width: '100vw', height: '100vh' }}
       />
     );
