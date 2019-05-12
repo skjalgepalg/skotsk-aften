@@ -43,6 +43,14 @@
     },
     {
       "type": "Feature",
+      "geometry": { "type": "point", "coordinates": [140.6502351, 38.3078233] },
+      "properties": {
+        "name": "Nikka Whisky Sendai Factory",
+        "region": "Japan"
+      }
+    },
+    {
+      "type": "Feature",
       "geometry": { "type": "point", "coordinates": [-86.3676646, 35.2840677] },
       "properties": {
         "name": "Jack Daniel's Distillery",

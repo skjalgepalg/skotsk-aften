@@ -128,7 +128,7 @@ export default class Presentation extends React.Component {
             },
             {
               name: 'Nikka Coffey Grain',
-              distillery: 'Nikka Whisky Yoichi Distillery',
+              distillery: 'Nikka Whisky Sendai Factory',
               region: 'Japan',
               abv: 45,
               casks: 'Ukjent',
