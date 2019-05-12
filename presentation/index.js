@@ -86,6 +86,20 @@ export default class Presentation extends React.Component {
           <Slide
             bgColor='primary'
             onEnter={() => {
+              this.setState(() => ({ suchArr: false }));
+              this.map.current.clearMarkers();
+              this.map.current.panTo({
+                longitude: -4.9,
+                latitude: 56.808,
+                zoom: 6.5
+              });
+            }}
+          />
+
+          <Slide
+            bgColor='primary'
+            onEnter={() => {
+              this.setState(() => ({ suchArr: false }));
               this.map.current.clearMarkers();
               this.map.current.panTo({
                 longitude: -4.9,
@@ -106,7 +120,7 @@ export default class Presentation extends React.Component {
           <Slide
             bgColor='primary'
             onEnter={() => {
-              this.setState(state => ({ suchArr: false }));
+              this.setState(() => ({ suchArr: false }));
               this.panToDefault();
             }}
           >
