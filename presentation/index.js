@@ -79,39 +79,44 @@ export default class Presentation extends React.Component {
       <>
         <Map ref={this.map} />
         <Deck transitionDuration={500} theme={theme}>
+          <Slide
+            bgColor='primary'
+            onEnter={() =>
+              this.map.current.panTo({
+                longitude: -4.9,
+                latitude: 56.808,
+                zoom: 6.5
+              })
+            }
+          >
+            <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
+              Whisky
+            </Heading>
+            {/* <Appear onAnim={this.panToDefault}>
+              <Text fit caps textColor='tertiary' textFont='secondary'>
+                (fra hele verden)
+              </Text>
+            </Appear> */}
+          </Slide>
           <Slide bgColor='primary' onEnter={this.panToDefault}>
             <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
               Whisky
             </Heading>
-            <Appear>
-              <Text fit caps textColor='tertiary' textFont='secondary'>
-                (fra hele verden)
-              </Text>
-            </Appear>
+            <Text fit caps textColor='tertiary' textFont='secondary'>
+              (fra hele verden)
+            </Text>
           </Slide>
 
-          <Slide
-            onEnter={() => {
-              this.video.current.play();
-            }}
-          >
-            <video
-              loop
-              className='nick'
-              ref={this.video}
-              src={require('../assets/Nick_lagavulin.mp4')}
-            />
-          </Slide>
-
-          <Slide bgColor='tertiary'>
+          {/* <Slide bgColor='tertiary'>
             <Heading fit caps textColor='gray'>
               Endelig...
             </Heading>
-          </Slide>
+          </Slide> */}
 
           {[
             {
               name: 'Jameson Select Reserve Black Barrel',
+              distillery: 'New Midleton Distillery',
               region: 'Irland',
               abv: 40,
               casks: 'Double-charred ex-bourbon',
@@ -123,6 +128,7 @@ export default class Presentation extends React.Component {
             },
             {
               name: 'Nikka Coffey Grain',
+              distillery: 'Nikka Whisky Yoichi Distillery',
               region: 'Japan',
               abv: 45,
               casks: 'Ukjent',
@@ -134,6 +140,7 @@ export default class Presentation extends React.Component {
             },
             {
               name: 'Mackmyra Skördetid',
+              distillery: 'Mackmyra Distillery',
               region: 'Sverige',
               abv: 46.1,
               casks: 'Svensk eik, sluttlagret på amarone-fat',
@@ -145,35 +152,48 @@ export default class Presentation extends React.Component {
             },
             {
               name: "Jack Daniel's SB",
+              distillery: "Jack Daniel's Distillery",
               region: 'Tennessee, USA',
               abv: 45,
               casks: 'American virgin oak',
               panTo: {
-                longitude: -86.3694619,
-                latitude: 35.2809192,
-                zoom: 15.49
+                longitude: -86.2217589,
+                latitude: 35.8141364,
+                zoom: 5
               }
             },
             {
               name: 'Kavalan Solist ex-bourbon',
+              distillery: 'Kavalan Distillery',
               region: 'Taiwan',
               abv: 59.4,
               casks: 'Ex-bourbon',
               panTo: {
-                longitude: 123.1929874,
-                latitude: 29.0246801,
-                zoom: 5.86
+                longitude: 117.7415021,
+                latitude: 25.4026575,
+                zoom: 5.6
               }
             }
-          ].map(dram => (
+          ].map(dram => [
             <Slide
-              key={dram.name}
+              key={dram.name + '_primary'}
+              bgColor='primary'
               onEnter={() => {
                 this.map.current.clearMarkers();
                 this.map.current.addMarkers(
                   d => d.properties.region === dram.region,
                   d => d.properties.name === dram.distillery
                 );
+                this.panToDefault();
+              }}
+            >
+              <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
+                {dram.region}
+              </Heading>
+            </Slide>,
+            <Slide
+              key={dram.name}
+              onEnter={() => {
                 this.map.current.panTo(dram.panTo);
               }}
               align='flex-start flex-start'
@@ -203,7 +223,21 @@ export default class Presentation extends React.Component {
                 </Table>
               </div>
             </Slide>
-          ))}
+          ])}
+
+          <Slide
+            onEnter={() => {
+              this.panToDefault();
+              this.video.current.play();
+            }}
+          >
+            <video
+              loop
+              className='nick'
+              ref={this.video}
+              src={require('../assets/Nick_lagavulin.mp4')}
+            />
+          </Slide>
         </Deck>
       </>
     );
