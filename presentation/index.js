@@ -66,6 +66,9 @@ export default class Presentation extends React.Component {
     this.map = React.createRef();
     this.video = React.createRef();
     this.panToDefault = this.panToDefault.bind(this);
+    this.state = {
+      suchArr: false
+    };
   }
 
   panToDefault() {
@@ -73,6 +76,7 @@ export default class Presentation extends React.Component {
   }
 
   // TODO: slide steg 1 av 40 -> Skjalg som har laget slides, så strap in!
+  getSuchArr = () => Array.apply(null, { length: 40 }).map(Number.call, Number);
 
   render() {
     return (
@@ -81,24 +85,31 @@ export default class Presentation extends React.Component {
         <Deck transitionDuration={500} theme={theme}>
           <Slide
             bgColor='primary'
-            onEnter={() =>
+            onEnter={() => {
+              this.map.current.clearMarkers();
               this.map.current.panTo({
                 longitude: -4.9,
                 latitude: 56.808,
                 zoom: 6.5
-              })
-            }
+              });
+            }}
           >
             <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
               Whisky
             </Heading>
-            {/* <Appear onAnim={this.panToDefault}>
+            <Appear onAnim={() => this.setState(() => ({ suchArr: true }))}>
               <Text fit caps textColor='tertiary' textFont='secondary'>
-                (fra hele verden)
+                ...strap in
               </Text>
-            </Appear> */}
+            </Appear>
           </Slide>
-          <Slide bgColor='primary' onEnter={this.panToDefault}>
+          <Slide
+            bgColor='primary'
+            onEnter={() => {
+              this.setState(state => ({ suchArr: false }));
+              this.panToDefault();
+            }}
+          >
             <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
               Whisky
             </Heading>
@@ -107,11 +118,14 @@ export default class Presentation extends React.Component {
             </Text>
           </Slide>
 
-          {/* <Slide bgColor='tertiary'>
-            <Heading fit caps textColor='gray'>
-              Endelig...
-            </Heading>
-          </Slide> */}
+          {this.state.suchArr &&
+            this.getSuchArr().map((_, i) => (
+              <Slide key={i} bgColor='tertiary'>
+                <Heading fit caps textColor='gray'>
+                  wow such slide
+                </Heading>
+              </Slide>
+            ))}
 
           {[
             {
@@ -119,11 +133,12 @@ export default class Presentation extends React.Component {
               distillery: 'New Midleton Distillery',
               region: 'Irland',
               abv: 40,
-              casks: 'Double-charred ex-bourbon',
+              still: 'Pot og column still',
+              casks: 'Double-charred ex-bourbon, ex-bourbon og sherry',
               panTo: {
                 longitude: -8.745647,
-                latitude: 52.741558,
-                zoom: 6
+                latitude: 53.741558,
+                zoom: 5.8
               }
             },
             {
@@ -131,6 +146,7 @@ export default class Presentation extends React.Component {
               distillery: 'Nikka Whisky Sendai Factory',
               region: 'Japan',
               abv: 45,
+              still: 'Coffey still',
               casks: 'Ukjent',
               panTo: {
                 longitude: 129.9857494,
@@ -143,7 +159,8 @@ export default class Presentation extends React.Component {
               distillery: 'Mackmyra Distillery',
               region: 'Sverige',
               abv: 46.1,
-              casks: 'Svensk eik, sluttlagret på amarone-fat',
+              still: 'Pot still',
+              casks: 'Svensk eik, sluttlagret på Masi amarone-fat',
               panTo: {
                 longitude: 13.3268579,
                 latitude: 61.8383337,
@@ -155,6 +172,7 @@ export default class Presentation extends React.Component {
               distillery: "Jack Daniel's Distillery",
               region: 'Tennessee, USA',
               abv: 45,
+              still: 'Pot still, Lincoln County Process',
               casks: 'American virgin oak',
               panTo: {
                 longitude: -86.2217589,
@@ -167,6 +185,7 @@ export default class Presentation extends React.Component {
               distillery: 'Kavalan Distillery',
               region: 'Taiwan',
               abv: 59.4,
+              still: 'Pot still',
               casks: 'Ex-bourbon',
               panTo: {
                 longitude: 117.7415021,
@@ -219,6 +238,12 @@ export default class Presentation extends React.Component {
                       </TableHeaderItem>
                       <TableItem textAlign='left'>{dram.casks}</TableItem>
                     </TableRow>
+                    <TableRow>
+                      <TableHeaderItem textAlign='left'>
+                        Prosess
+                      </TableHeaderItem>
+                      <TableItem textAlign='left'>{dram.still}</TableItem>
+                    </TableRow>
                   </TableBody>
                 </Table>
               </div>
@@ -228,6 +253,7 @@ export default class Presentation extends React.Component {
           <Slide
             onEnter={() => {
               this.panToDefault();
+              this.map.current.clearMarkers();
               this.video.current.play();
             }}
           >
@@ -237,6 +263,12 @@ export default class Presentation extends React.Component {
               ref={this.video}
               src={require('../assets/Nick_lagavulin.mp4')}
             />
+          </Slide>
+
+          <Slide bgColor='tertiary'>
+            <Heading fit caps textColor='gray'>
+              Takk for alt
+            </Heading>
           </Slide>
         </Deck>
       </>
